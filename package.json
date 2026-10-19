@@ -32,7 +32,7 @@
     "cookie-es": "^3.1.1",
     "got": "^16.0.0",
     "nuxt": "^4.5.2",
-    "pretty-ms": "^9.3.0",
+    "pretty-ms": "^10.0.0",
     "tailwindcss": "^4.3.3",
     "tough-cookie": "^6.0.2",
     "valibot": "^1.4.2"
