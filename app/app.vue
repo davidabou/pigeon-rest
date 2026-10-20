@@ -1,7 +1,9 @@
 <script setup lang="ts">
-const title = 'Pigeon - API Request Client'
+const siteUrl = 'https://pigeon.abou.dev'
+const title = 'Pigeon REST - Free Online API Client, Postman Alternative'
 const description =
-  'An easy-to-use API request client for testing and debugging your APIs.'
+  'Pigeon is a free, open-source and lightweight online REST API client. Send HTTP requests (GET, POST, PUT, PATCH, DELETE), inspect headers, cookies and responses right in your browser, no install needed.'
+const ogImage = `${siteUrl}/og-image.png`
 
 const colorMode = useColorMode()
 
@@ -15,14 +17,55 @@ function toggleColorMode() {
 
 useFavicon(favicon)
 
+useHead({
+  htmlAttrs: { lang: 'en' },
+  link: [{ rel: 'canonical', href: `${siteUrl}/` }],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: 'Pigeon REST',
+        url: `${siteUrl}/`,
+        description,
+        image: ogImage,
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'Any',
+        browserRequirements: 'Requires JavaScript',
+        isAccessibleForFree: true,
+        license: 'https://opensource.org/licenses/MIT',
+        codeRepository: 'https://github.com/pigeon-rest/pigeon',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+      })
+    }
+  ]
+})
+
 useSeoMeta({
   title,
   description,
+  robots: 'index, follow',
+  themeColor: [
+    { content: '#ffffff', media: '(prefers-color-scheme: light)' },
+    { content: '#18181b', media: '(prefers-color-scheme: dark)' }
+  ],
+  ogType: 'website',
+  ogSiteName: 'Pigeon REST',
+  ogUrl: `${siteUrl}/`,
+  ogLocale: 'en_US',
   ogTitle: title,
   ogDescription: description,
-  ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
-  twitterImage: 'https://ui.nuxt.com/assets/templates/nuxt/starter-light.png',
-  twitterCard: 'summary_large_image'
+  ogImage,
+  ogImageAlt: 'Pigeon REST, a lightweight open-source alternative to Postman',
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  twitterCard: 'summary_large_image',
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: ogImage,
+  twitterImageAlt:
+    'Pigeon REST, a lightweight open-source alternative to Postman'
 })
 
 defineShortcuts({
@@ -48,7 +91,11 @@ const formatted = computed(() => {
   <UApp>
     <ShortcutsModal />
 
-    <UDashboardNavbar title="Pigeon" :toggle="false">
+    <UDashboardNavbar :toggle="false">
+      <template #title>
+        Pigeon <span class="sr-only">REST - Online API Client</span>
+      </template>
+
       <template #leading>
         <UIcon name="i-ph-bird-fill" class="text-highlighted" />
       </template>
